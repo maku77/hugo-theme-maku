@@ -13,6 +13,8 @@
 ```console
 $ cd <Hugoプロジェクト>
 $ git submodule add https://github.com/maku77/hugo-theme-maku.git themes/maku
+$ git add .
+$ git commit
 ```
 
 ### config.toml にテーマ設定
