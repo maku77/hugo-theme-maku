@@ -1,0 +1,69 @@
+// 次のような全体レイアウトを制御するためのスタイルシート
+//
+//   xRoot
+//     xSiteHeader
+//     xContainer
+//       xMenu
+//       xMain
+//     xSiteFooter
+
+/* 基本レイアウト（横幅が狭いとき） */
+#xRoot {
+  position: static;
+
+  /* xRoot ごとセンタリング */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*
+ * 全体レイアウト (xContainer, xMain, xMenu)
+ */
+#xContainer {
+  position: relative;
+
+  /* フレキシブルボックスレイアウトによる段組 */
+  display: flex;
+  display: -webkit-flex;
+}
+
+#xMain {
+  background: #fff;
+  padding: 0 $MAIN_PADDING_SMALL;
+  @include screen-size-1 { padding: 0 $MAIN_PADDING; }
+
+  /* メイン領域は最大幅を制限する */
+  width: 100%;
+  max-width: 55rem;
+
+  /* 横幅が狭いときは main をセンタリング */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#xMenu {
+  display: none;  /* サイドバーはデフォルト非表示 */
+
+  /* 印刷時は非表示 */
+  @media print { display: none; }
+}
+
+/* 横幅が広いときは、全体を 70-1rem に固定し、そのうちメニューに 20rem 割り当て */
+@media screen and (min-width: 70rem) {
+  #xRoot {
+    width: 69rem;
+  }
+
+  #xMenu {
+    background: mix(white, $COLOR_SITE, 90%);
+    display: block;
+    width: 20rem;
+    padding-bottom: $BASE_PADDING;
+  }
+
+  #xMain {
+    padding-right: 0;
+    display: block;
+    /* width: calc(100vw - 20rem); */
+  }
+}

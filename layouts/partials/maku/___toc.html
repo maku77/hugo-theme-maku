@@ -1,0 +1,27 @@
+<div id="menu">メニュー挿入位置</div>
+
+<script>
+$(function() {
+  /*
+   * 指定されたヘッダ要素（例: 'h2'）のタイトル名をもとに
+   * メニュー要素 (ul) を生成する。
+   */
+  function createMenu(targetTagName) {
+    var $ul = $('<ul class="menu" />');  // メニュー項目の親要素
+    var sectionNumber = 1;  // ジャンプ先名称のサフィックス
+    $(targetTagName).each(function (index, elem) {
+      var $e = $(elem);
+      // ジャンプ先となる a 要素を追加する（name 属性も自動生成）
+      var name = 'section' + (sectionNumber++);
+      $e.prepend('<a name="' + name + '"></a>');
+      // メニュー項目を追加
+      $ul.append('<li><a href="#' + name + '">' + $e.text() + '</a>');
+    });
+    return $ul;
+  }
+
+  // メニュー要素 (ul) を生成し、メニュー挿入位置へ挿入
+  $('#menu').append(createMenu('h2'));
+});
+</script>
+

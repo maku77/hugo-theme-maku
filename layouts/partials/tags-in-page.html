@@ -1,0 +1,7 @@
+{{- with .Params.tags }}
+  <div class="xPageTags">
+    {{- range . }}
+      <span class="xPageTags_item"><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></span>
+    {{- end }}
+  </div>
+{{- end }}

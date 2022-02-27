@@ -1,0 +1,23 @@
+{{- define "hierarchy" }}
+  <ul>
+    {{/* カレントセクション直下のセクションは再帰処理 */}}
+    {{- range .Sections }}
+      <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+        {{- template "hierarchy" . }}
+      </li>
+    {{- end }}
+
+    {{/* カレントセクション直下の記事ページ */}}
+    {{- range .RegularPages }}
+      <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+    {{- end }}
+  </ul>
+{{- end }}
+
+<div class="xPageList">
+
+  <div class="xPageList_boxTitle">子ページリスト</div>
+  <div class="xPageList_boxBorder">
+    {{ template "hierarchy" . }}
+  </div>
+</div>

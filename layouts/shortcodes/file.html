@@ -1,0 +1,10 @@
+{{- $src := .Get "src" -}}
+{{- $caption := .Get "caption" -}}
+{{- $basename := replaceRE ".*/(.+)" "$1" $src -}}
+
+{{- /* ページまたぎでリンク切れを防ぐおまじない */}}
+{{- $res := .Page.Resources.GetMatch $src }}
+{{- if $res }}
+  {{- $src = $res.RelPermalink }}
+{{- end }}
+<a href="{{ $src }}">{{ or $caption $basename }}</a>

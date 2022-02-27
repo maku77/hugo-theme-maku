@@ -1,0 +1,5 @@
+{{- $imageFile := .Params.categoryIcon }}
+{{- $imageRes := .Resources.GetMatch $imageFile }}
+{{- $imageRes := $imageRes.Fill "100x100" }}
+{{- $imageUrl := $imageRes.RelPermalink }}
+{{- return $imageUrl }}

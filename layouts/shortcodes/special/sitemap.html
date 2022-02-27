@@ -1,0 +1,22 @@
+{{- define "local-sitemap" }}
+  <ul>
+    {{/* カレントセクション直下のセクションは再帰処理 */}}
+    {{- range .Sections }}
+    {{- if ne .Params.noindex true }}
+      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        {{- template "local-sitemap" . }}
+      </li>
+    {{- end }}
+    {{- end }}
+
+    {{/* カレントセクション直下のページリスト（ホームだけ特殊処理） */}}
+    {{- range .RegularPages }}
+    {{- if ne .Params.noindex true }}
+      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    {{- end }}
+    {{- end }}
+  </ul>
+{{- end }}
+
+{{ template "local-sitemap" .Site.Home }}
+

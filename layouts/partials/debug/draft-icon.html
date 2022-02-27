@@ -1,0 +1,4 @@
+{{- /* 記事一覧のタイトルの前に表示するドラフトアイコン（ローカルサーバのみ出力） */}}
+{{- if and .Site.IsServer .Draft -}}
+  <span style="font-size: smaller; border-radius: 0.3em; padding: 0.1em 0.3em; background:#f36; color: white;">d</span>
+{{- end }}

@@ -1,0 +1,27 @@
+{{- define "breadcrumb" }}
+  {{- if .node.Parent }}
+    {{- template "breadcrumb" (dict "node" .node.Parent "start" .start) }}
+  {{- else if not .node.IsHome }}
+    {{- template "breadcrumb" (dict "node" .node.Site.Home "start" .start) }}
+  {{- end }}
+
+  <span class="xBreadcrumb_item">
+    {{- if eq .node .start -}}
+      {{ .node.Render "inc-page-linktitle" }}
+    {{- else -}}
+      <a href="{{ .node.RelPermalink }}">
+        {{- if .node.IsHome -}}
+          &#x1F3E0;
+        {{- else -}}
+          {{- .node.Render "inc-page-linktitle" }}
+        {{- end -}}
+      </a>
+    {{- end }}
+  </span>
+{{- end }}
+
+<aside>
+<div class="xBreadcrumb">
+  {{- template "breadcrumb" (dict "node" . "start" .) }}
+</div>
+</aside>

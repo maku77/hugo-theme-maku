@@ -1,0 +1,12 @@
+<div class="xMenu_box" data-sticky>
+  <h3 class="xMenu_box_title"><a href="/latest/">新着</a></h3>
+  <div class="xMenu_box_body">
+    {{ range first 5 (where $.Site.RegularPages.ByLastmod.Reverse ".Draft" "!=" true) }}
+      <div class="xBoxLink">
+        <a href="{{.RelPermalink}}">{{.Title}}
+        <time>{{.Lastmod.Format "2006-01-02"}}</time></a>
+      </div>
+    {{ end }}
+  </div>
+</div>
+

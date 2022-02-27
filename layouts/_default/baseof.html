@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html{{ with .Site.LanguageCode }} lang="{{ . }}"{{ end }}>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>{{ if not .IsHome }}{{- .Render "inc-page-title" -}}｜{{ end }}{{ .Site.Title }}</title>
+  {{ partial "head/analytics" . -}}
+  {{ partial "head/ogp" . -}}
+  {{ $style := resources.Get "css/main.scss" | toCSS | minify | fingerprint -}}
+  <link rel="stylesheet" href="{{ $style.RelPermalink }}">
+  {{ partialCached "head/favicon" . -}}
+  {{ partialCached "head/jquery" . -}}
+  {{ partialCached "head/codoc" . -}}
+  {{ partial "head/custom" . -}}
+  {{ block "head" . }}{{ end -}}
+</head>
+<body>
+
+<div id="xRoot">
+  <div id="xSiteHeader"><a href="{{ "/" | relURL }}">{{ .Site.Title }}</a></div>
+  {{ if not .IsHome }}{{ partial "breadcrumb" . }}{{ end }}
+
+  <div id="xContainer">
+    {{ partial "sidebar/all" . }}
+    <main id="xMain">
+      {{/* partial "debug" . */}}
+      {{- block "article" . }}article ブロックが見つかりません。{{ end }}
+      {{- partialCached "ad/adsense" . }}
+    </main><!-- xMain -->
+  </div>
+
+  {{- if not .IsHome }}{{ partial "breadcrumb" . }}{{ end }}
+  <div id="xSiteFooter"><a href="{{ "/" | relURL }}">{{ .Site.Title }}</a></div>
+  <div id="xSiteFooter2">
+    <a href="{{ "/sitemap/" | relURL }}">サイトマップ</a> ｜
+    <a tatget="_blank" href="https://forms.gle/xdUszEv4f5CEqH947">まくへのメッセージ</a>
+  </div>
+</div>
+
+{{ partialCached "script/all" . }}
+{{ partial "breadcrumb-json" . }}
+
+</body>
+</html>

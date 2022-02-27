@@ -1,0 +1,6 @@
+{{- partialCached "ad/codoc" . }}
+{{- with .Parent }}
+<div class="xArticle_up">
+  <a href="{{ .RelPermalink }}"><span class="xArticle_up_label">{{ .Render "inc-page-title" }}</span><br>へ戻る</a>
+</div>
+{{- end }}

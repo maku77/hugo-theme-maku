@@ -1,0 +1,42 @@
+{{- $src := .Get "src" }}
+{{- $title := .Get "title" }}
+{{- $code := .Get "code" }}
+{{- $width := .Get "w" }}
+{{- $border := .Get "border" }}
+
+{{- $imageUrl := $src }}
+{{- /* Web 上の画像ファイル(URL)を指定すると $res は nil になることに注意 */}}
+{{- $res := .Page.Resources.GetMatch $src }}
+{{- /* img タグの height 属性用 */}}
+{{- $height := "auto" }}
+{{- $isSvg := strings.HasSuffix $src "svg" }}
+
+{{- /* ページまたぎでリンク切れを防ぐおまじない */}}
+{{- if $res }}
+  {{- $src = $res.RelPermalink }}
+  {{- $imageUrl = $res.RelPermalink }}
+{{- end }}
+
+{{- /* PNG や JPEG 画像のリサイズ */}}
+{{- if and $width (not $isSvg) }}
+  {{- $size := printf "%sx" $width }}
+  {{- $image := $res.Resize $size }}
+  {{- $imageUrl = $image.RelPermalink }}
+  {{- $height = $image.Height }}
+{{- end }}
+
+{{- if (not $width) }}
+  {{- $width = "auto" }}
+{{- end }}
+
+<figure class="xImage">
+  <a href="{{ $src }}" target="_blank">
+    <img style="{{ if eq $border "true" }}border: solid #ccc 2px;{{ end }}{{ if $isSvg }}width:{{ $width }}px;{{ end }}" width="{{$width}}" height="{{$height}}" src="{{ $imageUrl }}" alt="{{ $src }}" />
+  </a>
+  {{- if or $title $code }}
+    <figcaption>
+      {{- with $title }}図: {{ . }}{{ end }}
+      {{- with $code }} <span class="xImage_codeLink">≪<a href="{{ . }}">生成コード&#x1F4D6;</a>≫</span>{{ end -}}
+    </figcaption>
+  {{- end }}
+</figure>

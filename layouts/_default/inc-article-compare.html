@@ -1,0 +1,11 @@
+{{- $compare := .Params.compare }}
+{{- if $compare }}
+  {{- $compares := $.Site.Data.compare }}
+  {{- $data := index $compares $compare }}
+  <div style="text-align: center">
+    <b>「{{ $data.title }}」</b>の比較記事:
+    {{- range $data.pages }}
+      <a style="border: solid 1px #9cf; border-radius: 0.8em; padding: 0.2em 0.4em;" href="{{ .url }}">{{ .label }}</a>
+    {{- end }}
+  </div>
+{{- end }}

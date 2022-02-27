@@ -1,0 +1,30 @@
+// Color definitions
+$COLOR_SITE: black !default;
+$COLOR_SITE_LIGHT: mix(white, $COLOR_SITE, 90%) !default;
+$COLOR_TEXT: #222 !default;
+$COLOR_TEXT_STRONG: #e48 !default;
+$COLOR_BG: white !default;
+$COLOR_BG_STRONG: #ffefdf !default;
+$COLOR_HEADER_TEXT: #ddd !default;
+$COLOR_PRIVATE: #f03 !default;
+$COLOR_LINK_HIGHLIGHT: #36f !default;
+$COLOR_LINK_HIGHLIGHT_TEXT: white !default;
+$COLOR_CODE: #333;
+$COLOR_CODE_BG: #f0f3f3;
+
+// Layout definitions
+$BASE_PADDING: 1rem !default;
+$FONT_CODE: Menlo, Monaco, Consolas, "Courier New", monospace !default;
+$MAIN_PADDING: 1rem !default;
+$MAIN_PADDING_SMALL: 0.5rem !default;
+
+// スクリーンサイズ中
+@mixin screen-size-1 {
+  @media (min-width: 35rem) { @content; }
+}
+
+// スクリーンサイズ大
+@mixin screen-size-2 {
+  @media (min-width: 50rem) { @content; }
+}
+

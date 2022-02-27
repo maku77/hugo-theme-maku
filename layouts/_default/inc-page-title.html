@@ -1,0 +1,3 @@
+{{- if .IsHome }}トップページ
+{{- else if eq .Title "Tags" }}タグの一覧
+{{- else }}{{ .Title }}{{ end -}}

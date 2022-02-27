@@ -1,0 +1,36 @@
+<div class="xMenu_box" data-sticky>
+  <h3 class="xMenu_box_title">フォルダ</h3>
+  <div class="xMenu_box_body">
+    <div class="xNavTree">
+    {{- template "nav-tree-internal" (dict "section" .Site.Home "current" .) }}
+    </div>
+  </div>
+</div>
+
+{{- define "nav-tree-internal" }}
+  {{- $section := .section }}{{/* 今回処理するセクション */}}
+  {{- $current := .current }}{{/* 現在表示中のページ */}}
+  {{- $sections := $section.Sections }}
+
+  {{- /* リリース時はドラフトセクション以外を表示 */}}
+  {{- $sections := cond $section.Site.IsServer $sections (where $sections ".Draft" false) }}
+
+  <ul>
+    {{- /* セクション直下のセクションページをループ表示 */}}
+    {{- range $sections }}
+      <li{{ if (eq . $current) }} class="xNavTree-active"{{ end }}><a class="xNavTree-dir" href="{{ .RelPermalink }}">{{ if .Draft }}<span style="color:#f36">×</span>{{ end }}{{ .LinkTitle }}{{ if $section.Site.IsServer }} <small>({{ len (union .Pages .Sections) }})</small>{{ end }}</a>
+        {{- if .IsAncestor $current }}
+          {{- /* 開いているページよりも上位のセクションであればさらに掘り下げる */}}
+          {{- template "nav-tree-internal" (dict "section" . "current" $current) }}
+        {{- end }}
+    {{- end }}
+
+    {{- /* ホーム直下のみセクション直下の通常ページをループ表示 */}}
+    {{- if $section.IsHome }}
+      {{- range $section.RegularPages }}
+        <li{{ if (eq . $current) }} class="xNavTree-active"{{ end }}><a href="{{ .RelPermalink }}">{{ if .Draft }}<span style="color:#f36">×</span>{{ end }}{{ .LinkTitle }}</a>
+      {{- end }}
+    {{- end }}
+  </ul>
+{{- end }}
+

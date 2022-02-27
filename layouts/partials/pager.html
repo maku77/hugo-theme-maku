@@ -1,0 +1,7 @@
+<ul>
+  {{- range .Paginator.Pages }}
+    <li>{{ partial "debug/weight-icon" . }}{{ partial "debug/draft-icon" . }}<a href="{{ .RelPermalink }}">{{ .Title }}</a>
+  {{- end }}
+</ul>
+{{- template "_internal/pagination.html" . -}}
+

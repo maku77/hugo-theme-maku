@@ -1,0 +1,32 @@
+{{ define "head" }}
+  <meta name="robots" content="noindex,follow">
+{{ end }}
+
+{{ define "article" }}
+<article class="xArticle">
+  {{- .Render "inc-article-header" }}
+
+  <div class="xArticle_content">
+    {{- $plural := .Data.Plural }}
+
+    <h2>A-Z 順</h2>
+    <br>
+    {{- range $index, $term := .Data.Terms.Alphabetical }}
+      <div class="xMenu_tag">
+        <a href="{{ $.Site.LanguagePrefix }}/{{ $plural }}/{{ $term.Name | urlize }}">{{ $term.Name }} ({{ $term.Count }})</a>
+      </div>
+    {{- end }}
+
+    <h2>記事数順</h2>
+    <br>
+    {{- range $index, $term := .Data.Terms.ByCount }}
+      <div class="xMenu_tag">
+        <a href="{{ $.Site.LanguagePrefix }}/{{ $plural }}/{{ $term.Name | urlize }}">{{ $term.Name }} ({{ $term.Count }})</a>
+      </div>
+    {{- end }}
+  </div>
+
+  {{ .Render "inc-article-up" }}
+</article>
+{{ end }}
+

@@ -1,0 +1,26 @@
+{{ define "article" }}
+<article class="xArticle" itemscope itemtype="https://schema.org/BlogPosting">
+  {{ .Render "inc-article-header" }}
+  {{ .Render "inc-article-content" }}
+
+  <table style="font-size: smaller; margin-bottom: 1rem;">
+    <thead>
+      <tr><th>最終更新日</th><th>タイトル</th></tr>
+    </thead>
+    <tbody>
+    {{- range first 50 .Site.RegularPages.ByLastmod.Reverse }}
+      {{- if .Title }}
+      <tr>
+        <td style="white-space:nowrap;">{{ with .Lastmod }}<time>{{ .Format "2006-01-02" }}</time>{{ end }}</td>
+        <td><a style="display: block;" href="{{ .RelPermalink }}">{{ .Title }}</a></td>
+      </tr>
+      {{- end }}
+    {{- end }}
+    </tbody>
+  </table>
+
+  {{ .Render "inc-article-up" }}
+</article>
+{{ end }}
+
+

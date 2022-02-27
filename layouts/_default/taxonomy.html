@@ -1,0 +1,25 @@
+{{ define "head" }}
+  <meta name="robots" content="noindex,follow">
+{{ end }}
+
+{{ define "article" }}
+<article class="xArticle">
+  {{- partial "prev-next-siblings" . }}
+  {{- .Render "inc-article-header" }}
+
+  <div class="xPageList">
+    <ul>
+      {{ range .Pages }}
+        <li><a href="{{ .RelPermalink }}">{{ partial "debug/weight-icon" . }}{{ partial "debug/draft-icon" . }}{{ .Title }}</a></li>
+      {{ end }}
+    </ul>
+  </div>
+
+  {{/* ページャで切り替えるまでもないので無効化 */}}
+  {{/* partial "pager" . */}}
+
+  {{ .Render "inc-article-up" }}
+  {{- partial "prev-next-siblings" . }}
+</article>
+{{ end }}
+

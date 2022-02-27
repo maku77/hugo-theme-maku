@@ -1,0 +1,16 @@
+<nav id="xMenu" aria-label="メニュー">
+  <!-- sidebar クラスまわりは sidebar.js 用の設定 -->
+  <div id="sidebar" style="height: 100%;">
+    <div id="sidebar_notFixed">
+      {{- partialCached "sidebar/site-logo" .Site }}
+      {{- partialCached "sidebar/custom-search" .Site }}
+      {{/* - partialCached "debug/debug-buttons" .Site */}}
+      {{- partial "sidebar/nav-tree" . }}
+
+      <!-- dummy box for spacing -->
+      <div class="xMenu_box" data-sticky><br></div>
+    </div>
+    <div id="sidebar_fixed" style="position:-webkit-sticky; position:sticky; top:4rem;">
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,26 @@
+{{ define "title" }}{{ .Title }}{{ end }}
+
+{{ define "article" }}
+  {{/* .Site.Title */}}
+
+  <!-- 最新の記事 -->
+  {{ partial "recents-top" . }}
+
+  <!-- トップの記事 -->
+  <article class="xArticle">
+    <div class="xArticle_content">
+      {{ .Content }}
+    </div>
+  </article>
+
+  <!-- 最近の記事をいくつかまとめて表示 -->
+  {{- range first 3 (where (where .Site.RegularPages.ByLastmod.Reverse ".Draft" "!=" true) ".Params.working" "!=" true) -}}
+    <article class="xArticle" itemscope itemtype="https://schema.org/BlogPosting">
+      {{ .Render "inc-article-header" }}
+      {{ .Render "inc-article-content" }}
+      {{ .Render "inc-article-up" }}
+    </article>
+  {{- end -}}
+
+  {{ partial "top-menu" . }}
+{{ end }}

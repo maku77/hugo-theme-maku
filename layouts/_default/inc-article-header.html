@@ -1,0 +1,42 @@
+{{- define "local-breadcrumb" }}
+  {{- with .Parent }}
+    {{- template "local-breadcrumb" . }}
+    <span class="xArticle_headerBox_breadcrumb"><a href="{{ .RelPermalink }}">{{ if .IsHome }}&#x1F3E0;{{ else }}{{ .Render "inc-page-linktitle" }}{{ end }}</a></span>
+  {{- end }}
+{{- end -}}
+
+{{- if .Site.IsServer }}
+  {{- $categoryIcon := partial "function/get-category-icon" . }}
+  {{- with $categoryIcon }}<img src="{{ . }}">{{ end }}
+{{- end }}
+
+<header class="xArticle_headerBox">
+  <div>{{- template "local-breadcrumb" . }}</div>
+  <h1 itemprop="headline" class="xArticle_headerBox_title"><a itemprop="mainEntityOfPage" href="{{ .RelPermalink }}">{{ if not .IsPage }}&#128193;{{ end }}{{- .Render "inc-page-title" }}</a></h1>
+  {{- partial "debug/link-title" . }}
+  {{- partial "tags-in-page" . }}
+  {{- if (isset .Params "date") }}
+    <span class="xPageDate">
+      更新: <time itemprop="dateModified" datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod.Format "2006-01-02" }}</time><br>
+      作成: <time itemprop="datePublished" datetime="{{ .Date.Format "2006-01-02" }}" />{{ .Date.Format "2006-01-02" }}</time>
+      <!-- meta itemprop="datePublished" content="｛｛.Date.Format "2006-01-02" ｝｝" / -->
+    </span>
+  {{- end }}
+  {{- if eq .Params.use_math true }}
+    {{- partialCached "script/mathjax" . }}
+  {{- end }}
+
+  {{- partial "debug/working-bar" . }}
+  {{- partial "debug/draft-bar" . }}
+  {{- partial "debug/alias" . }}
+
+  {{- /* Markdown ファイルのパスを表示 */}}
+  {{- if .Site.IsServer -}}
+    <div style="text-align:right; font-size: smaller;
+        background-image: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0), red);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;">
+      {{- with .File }}{{ .Filename }}{{ end -}}
+    </div>
+  {{- end }}
+</header>

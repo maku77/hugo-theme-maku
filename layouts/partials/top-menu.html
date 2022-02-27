@@ -1,0 +1,35 @@
+{{- /* サムネイル付きの子ページリスト */ -}}
+
+<h2>メニュー</h2>
+
+<div class="xTopMenu">
+  {{- /* カレントセクション直下のセクション（イメージあり） */ -}}
+  {{- range where .Sections ".Params.image" "!=" nil }}
+    {{ $imageFile := .Params.image }}
+    {{ $imageRes := .Resources.GetMatch $imageFile }}
+    {{ $imageRes := $imageRes.Fill "50x50" }}
+    {{ $imageUrl := $imageRes.RelPermalink }}
+    <div class="xTopMenu_item">
+      <a href="{{ .RelPermalink }}">
+        <img src="{{ $imageUrl }}">
+        <div class="xTopMenu_item_text">{{ .LinkTitle }}</div>
+      </a>
+    </div>
+  {{- end }}
+
+  {{- /* カレントセクション直下のセクション（イメージなし） */ -}}
+  {{- range where .Sections ".Params.image" "==" nil }}
+    <div class="xTopMenu_item">
+      <a href="{{ .RelPermalink }}"><p>{{ .LinkTitle }}</p></a>
+    </div>
+  {{- end }}
+
+  {{- /* カレントセクション直下の記事ページ */ -}}
+  {{- range .RegularPages }}
+    <div class="xTopMenu_item">
+      <a href="{{ .RelPermalink }}"><p>{{ .LinkTitle }}</p></a>
+    </div>
+  {{- end }}
+</div>
+
+

@@ -1,0 +1,10 @@
+<div class="xMenu_box" data-sticky>
+  <h3 class="xMenu_box_title"><a href="/tags/">タグ</a></h3>
+  <div class="xMenu_box_body">
+    {{- range .Site.Taxonomies.tags.ByCount -}}
+      <div class="xMenu_tag">
+        <a href="{{ "/tags/" | relLangURL }}{{ .Term | urlize }}">{{ .Term }} ({{ .Count }})</a>
+      </div>
+    {{- end -}}
+  </div>
+</div>

@@ -1,0 +1,33 @@
+{{- $iconUrl := "" }}
+{{- $found := false }}
+{{- $page := . }}
+
+{{- if $page.Params.categoryIcon }}
+  {{- $found = true }}
+{{- end }}
+
+{{- if not $found }}
+  {{- $page = $page.CurrentSection }}
+  {{- if $page }}{{- if $page.Params.categoryIcon }}
+    {{- $found = true }}
+  {{- end }}{{- end }}
+{{- end }}
+
+{{- if and (not $found) $page }}
+  {{- $page = $page.Parent }}
+  {{- if $page }}{{- if $page.Params.categoryIcon }}
+    {{- $found = true }}
+  {{- end }}{{- end }}
+{{- end }}
+
+{{- if and (not $found) $page }}
+  {{- $page = $page.Parent }}
+  {{- if $page }}{{- if $page.Params.categoryIcon }}
+    {{- $found = true }}
+  {{- end }}{{- end }}
+{{- end }}
+
+{{- if $found }}
+  {{- $iconUrl = partialCached "function/get-bundled-category-icon" $page }}
+{{- end }}
+{{- return $iconUrl }}

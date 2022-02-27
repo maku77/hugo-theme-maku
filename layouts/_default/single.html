@@ -1,0 +1,13 @@
+{{ define "article" }}
+<article class="xArticle" itemscope itemtype="https://schema.org/BlogPosting">
+  {{ partial "prev-next-siblings" . }}
+  {{/* partial "prev-next" . */}}
+
+  {{ .Render "inc-article-header" }}
+  {{ .Render "inc-article-compare" }}
+  {{ .Render "inc-article-content" }}
+  {{ .Render "inc-article-up" }}
+  {{ partial "prev-next-siblings" . }}
+  {{/* partial "prev-next-title" . */}}
+</article>
+{{ end }}

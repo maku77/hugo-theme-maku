@@ -1,0 +1,222 @@
+@charset "UTF-8";
+
+// Reset
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+  font-family: 'ヒラギノ丸ゴ ProN W4', 'Hiragino Maru Gothic ProN';
+  // font-family:-apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Hiragino Kaku Gothic ProN, "ヒラギノ角ゴ ProN W3", Arial, "メイリオ", Meiryo, sans-serif;
+  line-height: 1.7;
+  word-wrap: break-word;
+  -webkit-text-size-adjust: 100%;  // Keep font size when lotating screen in Android devices
+  -webkit-font-smoothing: antialiased;
+  // letter-spacing: 0.05em;
+}
+
+body {
+  color: $COLOR_TEXT;
+  background: $COLOR_BG;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: attr(width) / attr(height);
+  vertical-align: bottom;
+}
+
+// 強調／コード／コードブロック
+strong {
+  font-weight: bolder;
+  color: $COLOR_TEXT_STRONG;
+  /* background: linear-gradient(transparent 70%, #fe3 50%); */
+}
+
+code {
+  color: $COLOR_CODE;
+  font-family: $FONT_CODE;
+
+  // pre によるコードブロックの背景色を上書きしてしまわないように、
+  // 文中で単独で code を使ったときだけ code の背景色を設定する。
+  :not(pre) > & {
+    background: $COLOR_CODE_BG;
+    padding: 0.2em 0.3em;
+    border-radius: 0.2em;
+  }
+
+  > strong, strong & {
+    color: $COLOR_TEXT_STRONG;
+    background: mix($COLOR_TEXT_STRONG, white, 15%);
+  }
+}
+
+// 単語・用語定義
+dt {
+  font-weight: bolder;
+  margin-top: 1em;
+}
+dd {
+  margin-top: 0.5em;
+  margin-left: 1em;
+  @include screen-size-1 { margin-left: 2em; }
+  @include screen-size-2 { margin-left: 3em; }
+}
+
+// xImage（キャプション付き画像）
+figure.xImage {
+  display: block;
+  text-align: center;
+  img {
+    /* margin: 1rem auto 0.5rem auto; */
+    /* box-shadow: 0px 0px 3px 3px rgba(127, 127, 127, 0.5); */
+  }
+  > figcaption {
+    margin: 0.5rem 0 1rem 0;
+  }
+  .xImage_codeLink {
+    font-size: smaller;
+    a { font-weight: normal; }
+  }
+}
+
+// 外部リンクアイコン
+.xExternalLinkIcon::after {
+  content: url("/assets/img/common/external-icon.png");
+  padding-left: 3px;
+  padding-right: 5px;
+}
+
+
+// 上のフォルダへ戻る
+.xArticle_up {
+  margin-top: 1rem;
+  text-align: center;
+  a {
+    &:not(:hover) {
+      color: $COLOR_SITE;
+      background: $COLOR_SITE_LIGHT;
+    }
+    &:hover {
+      color: $COLOR_SITE_LIGHT;
+      background: $COLOR_SITE;
+    }
+    display: inline-block;
+    width: 100%;
+    padding: 0.5em 1em;
+    border-radius: 0.3em;
+    //border: solid 1px $COLOR_SITE;
+  }
+
+  &_label {
+    font-size: larger;
+    &::before {
+      content: '\1f4c1';
+    }
+  }
+}
+
+
+// サイドバーの検索ボックス
+.xSearchBox {
+  > input {
+    font-size: 16px;
+    vertical-align: middle;
+    border-radius: 3px;
+  }
+
+  > input[type="search"] {
+    width: 145px;
+    border: solid 1px #ff9c9c;
+    padding: 0.5em;
+  }
+
+  > input[type="submit"] {
+    background: #ff3c5f;
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 0.4em 1em;
+  }
+}
+
+//-----------------------------------------------
+// アコーディオン
+//-----------------------------------------------
+.xAccordion {
+  /* タイトル */
+  &_title {
+    display: block;
+    padding: 0.5rem 0.7rem;
+    background: #ddd;
+    cursor: pointer;
+    &::before {
+      font-size: smaller;
+      color: #666;
+      content: "▶";
+      padding-right: 0.5em;
+    }
+    &::after {
+      font-size: smaller;
+      color: #999;
+      content: "（クリックで表示）";
+    }
+    &:hover {
+      background: #ccc;
+    }
+  }
+
+  &_body {
+    display: none;  /* デフォルトでは本文は非表示 */
+
+    /* 本文の共通設定 */
+    border: solid lightgray 1px;
+    padding: 0.5rem;
+  }
+
+  input {
+    display: none;  /* チェックボックスは非表示 */
+
+    /* ラベルをクリックしたら記号を変更 */
+    &:checked + .xAccordion_title::before {
+      content: "▼";
+    }
+
+    /* ラベルをクリックしたら後ろのガイド文を変更 */
+    &:checked + .xAccordion_title::after {
+      content: "（クリックで非表示）";
+    }
+
+    /* ラベルをクリックしたら本文を開く（表示） */
+    &:checked ~ .xAccordion_body {
+      display: block;
+    }
+  }
+}
+
+
+// Google AdSense を印刷時に非表示にする
+.adsbygoogle {
+  @media print { display: none !important; }
+}
+
+//
+// Maku's Sass library (Mixins)
+//
+@mixin m-clearfix {
+  &::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+
+@mixin m-box-shadow($shadows...) {
+  -webkit-box-shadow: $shadows;
+  -moz-box-shadow: $shadows;
+  box-shadow: $shadows;
+}
+

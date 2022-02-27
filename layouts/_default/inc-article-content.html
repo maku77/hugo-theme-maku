@@ -1,0 +1,12 @@
+<div itemprop="articleBody" class="xArticle_content">
+  {{- with .Params.description }}
+    <div itemprop="description" class="xPageDescription">{{ . }}</div>
+  {{- end }}
+
+  {{ .TableOfContents }}
+
+  {{- .Content }}
+  {{- partial "microdata" . }}
+  {{- partial "related" . }}
+  {{- partial "tags-in-page" . }}
+</div>

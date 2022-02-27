@@ -1,0 +1,15 @@
+{{- with $.Site.Params.CustomSearchId }}
+<div class="xMenu_box" data-sticky>
+  <form action="https://cse.google.com/cse" target="_blank">
+    <div class="xSearchBox">
+      <input type="hidden" name="cx" value="{{ . }}" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <input type="search" name="q" placeholder="サイト内検索" size="30" autocomplete="off" />
+      <input type="submit" value="検索"></input>
+    </div>
+  </form>
+
+  <div class="xMenu_box_body">
+  </div>
+</div>
+{{- end }}
