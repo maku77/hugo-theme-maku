@@ -47,5 +47,8 @@ $ git clone --recursive https://github.com/<owner>/<repo>.git
 ### テーマの submodule を更新する
 
 ```config
-$ git submodule update
+$ git submodule update --remote
+$ git add themes
+$ git commit
 ```
+
