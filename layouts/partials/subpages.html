@@ -2,11 +2,12 @@
 {{- $level := .level }}
 
 {{- $links := partial "functions/get-frontmatter-links" $section }}
-{{- $subPages := (append $section.Pages $links).ByWeight }}
-{{- $tooMany := gt (len $subPages) 200 }}
+{{- $subPages := append $section.Pages $links }}
+{{- $sortedSubPages := partial "functions/sort-pages" $subPages }}
+{{- $tooMany := gt (len $sortedSubPages) 200 }}
 
 <ol>
-  {{- range $subPages }}
+  {{- range $sortedSubPages }}
     <li><a href="{{ .RelPermalink }}">{{ if .IsSection }}&#128193;{{ end }}{{ .LinkTitle }}
         {{- if .Site.IsServer }}<div style="font-size: smaller; font-weight: normal;">{{ partial "debug/weight-icon" . }}{{ partial "debug/draft-icon" . }}<span style="opacity: 50%;">{{ .Title }}</span></div>{{ end -}}</a>
       {{- if and .IsSection (gt $level 1) (not $tooMany) }}

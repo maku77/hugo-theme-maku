@@ -1,0 +1,11 @@
+{{- $pages := . }}
+{{- $pagesWithWeight := where $pages "Weight" "<>" 0 }}
+{{- $pagesWithoutWeight := where $pages "Weight" "==" 0 }}
+{{- $ret := slice }}
+
+{{- range $pagesWithWeight.GroupBy "Weight" }}
+  {{- $ret = $ret | append .Pages.ByLinkTitle }}
+{{- end }}
+{{- $ret = $ret | append $pagesWithoutWeight.ByLinkTitle }}
+
+{{- return $ret }}
