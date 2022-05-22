@@ -1,3 +1,4 @@
 {{- with $.Site.Params.sidebarLogo }}
-  <a href="/"><img src="{{ . | relURL }}"></a>
+  {{- $imageRes := resources.Get . }}
+  <a href="/"><img src="{{ $imageRes.Permalink }}"></a>
 {{- end }}
