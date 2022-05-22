@@ -1,20 +1,19 @@
-{{- define "og_image" }}
-  {{- if .Params.image }}
-    {{- $imageRes := .Resources.GetMatch .Params.image -}}
-    <meta property="og:image" content="{{ $imageRes.Permalink }}" />
-  {{- else if .Parent }}
-    {{- template "og_image" .Parent }}
-  {{- else if .Site.Params.image }}
-    <meta property="og:image" content="{{ .Site.Params.image | absURL }}" />
-  {{- end }}
-{{- end -}}
-
 <meta property="og:site_name" content="{{ .Site.Title }}" />
 <meta property="og:title" content="{{ .Title }}" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="{{ .Permalink }}" />
 <meta property="og:locale" content="ja_JP" />
 
+{{- define "og_image" }}
+  {{- if .Params.image }}
+    {{- $imageRes := .Resources.GetMatch .Params.image -}}
+    <meta property="og:image" content="{{ $imageRes.Permalink }}" />
+    <meta property="og:image:width" content="{{ $imageRes.Width }}" />
+    <meta property="og:image:height" content="{{ $imageRes.Height }}" />
+  {{- else if .Parent }}
+    {{- template "og_image" .Parent }}
+  {{- end }}
+{{- end -}}
 {{- template "og_image" . }}
 
 {{- if .Description }}
