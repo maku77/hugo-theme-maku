@@ -7,10 +7,14 @@
 
 <header class="xArticle_headerBox">
   <div>{{- template "local-breadcrumb" . }}</div>
-  {{- partial "category-icon" . }}
-  <h1 itemprop="headline" class="xArticle_headerBox_title"><a itemprop="mainEntityOfPage" href="{{ .RelPermalink }}">{{ if not .IsPage }}&#128193;{{ end }}{{- .Render "inc-page-title" }}</a></h1>
-  {{- partial "debug/link-title" . }}
-  {{- partial "tags-in-page" . }}
+  <div style="display: flex; margin-top: 0.8em;">
+    {{- partial "category-icon" . }}
+    <div style="flex: 1">
+      <h1 itemprop="headline" class="xArticle_headerBox_title"><a itemprop="mainEntityOfPage" href="{{ .RelPermalink }}">{{ if not .IsPage }}&#128193;{{ end }}{{- .Render "inc-page-title" }}</a></h1>
+      {{- partial "debug/link-title" . }}
+      {{- partial "tags-in-page" . }}
+    </div>
+  </div>
   {{- if (isset .Params "date") }}
     <span class="xPageDate">
       更新: <time itemprop="dateModified" datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod.Format "2006-01-02" }}</time><br>
