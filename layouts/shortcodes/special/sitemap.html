@@ -1,5 +1,5 @@
 {{- define "local-sitemap" }}
-  <ul>
+  <ul style="padding-left: 1.2em;">
     {{/* カレントセクション直下のセクションは再帰処理 */}}
     {{- range .Sections }}
     {{- if ne .Params.noindex true }}
@@ -18,5 +18,6 @@
   </ul>
 {{- end }}
 
+<b>{{ len .Site.RegularPages }}</b> 件の記事があります。
 {{ template "local-sitemap" .Site.Home }}
 
