@@ -5,13 +5,9 @@
   {{- end }}
 {{- end -}}
 
-{{- if .Site.IsServer }}
-  {{- $categoryIcon := partial "function/get-category-icon" . }}
-  {{- with $categoryIcon }}<img src="{{ . }}">{{ end }}
-{{- end }}
-
 <header class="xArticle_headerBox">
   <div>{{- template "local-breadcrumb" . }}</div>
+  {{- partial "category-icon" . }}
   <h1 itemprop="headline" class="xArticle_headerBox_title"><a itemprop="mainEntityOfPage" href="{{ .RelPermalink }}">{{ if not .IsPage }}&#128193;{{ end }}{{- .Render "inc-page-title" }}</a></h1>
   {{- partial "debug/link-title" . }}
   {{- partial "tags-in-page" . }}

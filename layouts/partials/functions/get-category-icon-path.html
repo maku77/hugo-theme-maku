@@ -1,0 +1,8 @@
+{{- $path := .Params.categoryIcon }}
+{{- if $path }}
+  {{- $res := .Resources.GetMatch $path }}
+  {{- $path = $res.RelPermalink }}
+{{- else if .Parent }}
+  {{- $path = partial "functions/get-category-icon-path" .Parent }}
+{{- end }}
+{{- return $path }}

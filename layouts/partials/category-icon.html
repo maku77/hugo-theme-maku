@@ -1,0 +1,6 @@
+{{- if .Site.IsServer }}
+  {{- $iconPath := partial "functions/get-category-icon-path" . }}
+  {{- with $iconPath }}
+    <img src="{{ . }}" style="width:80px; height:80px" />
+  {{- end }}
+{{- end }}
