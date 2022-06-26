@@ -8,8 +8,14 @@
 
 <ol>
   {{- range $sortedSubPages }}
-    <li><a href="{{ .RelPermalink }}">{{ if .IsSection }}&#128193;{{ end }}{{ .LinkTitle }}
-        {{- if .Site.IsServer }}<div style="font-size: smaller; font-weight: normal;">{{ partial "debug/weight-icon" . }}{{ partial "debug/draft-icon" . }}<span style="opacity: 50%;">{{ .Title }}</span></div>{{ end -}}</a>
+    <li><a href="{{ .RelPermalink }}">{{ if .IsSection }}&#128193;{{ end }}
+      {{- partial "debug/draft-icon" . -}}{{- partial "debug/weight-icon" . -}}{{- .LinkTitle }}
+      {{- if .Site.IsServer }}
+        <div style="font-size: smaller; font-weight: normal;">
+          {{- if .Params.linkTitle }}<span style="opacity: 50%;">{{ .Title }}</span>{{ end }}
+          {{- if in $links . }}{{ partial "debug/link-path" . }}{{ end }}
+        </div>
+      {{ end -}}</a>
       {{- if and .IsSection (gt $level 1) (not $tooMany) }}
         {{- partial "subpages" (dict "section" . "level" (sub $level 1)) }}
       {{- end }}
