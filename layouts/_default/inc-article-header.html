@@ -23,7 +23,7 @@
     </span>
   {{- end }}
   {{- if eq .Params.use_math true }}
-    {{- partialCached "script/mathjax" . }}
+    {{- partialCached "script/mathjax" .Site }}
   {{- end }}
 
   {{- partial "debug/working-bar" . }}
