@@ -1,9 +1,10 @@
+{{- $recents3 := partial "functions/get-recents" (dict "site" .Site "count" 3) }}
 <aside>
 <div class="xRecents">
   <h4>新着記事</h4>
-  {{- range first 3 (where .Site.RegularPages.ByLastmod.Reverse ".Draft" "!=" true) -}}
+  {{- range $recents3 -}}
     <div class="xRecents_item">
-      <a href="{{.RelPermalink}}">{{.Title}}
+      <a href="{{.RelPermalink}}">{{ partial "debug/draft-icon" . }}{{.Title}}
       {{- range .Params.tags -}}
         <span class="xRecents_item_tag">{{ . }}</span>
       {{- end -}}

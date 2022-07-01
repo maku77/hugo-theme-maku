@@ -1,0 +1,9 @@
+{{- $site := .site }}
+{{- $count := .count }}
+{{- $result := slice }}
+{{- if $site.IsServer }}
+  {{- $result = (first $count $site.RegularPages.ByLastmod.Reverse) }}
+{{- else }}
+  {{- $result = first $count (where $site.RegularPages.ByLastmod.Reverse ".Draft" "!=" true) }}
+{{- end }}
+{{- return $result }}
