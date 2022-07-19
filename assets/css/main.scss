@@ -20,6 +20,12 @@ a {
   main & {
     font-weight: bold;
   }
+
+  // リンクテキスト内のコードには code 要素特有の色を付けない
+  & code {
+    color: inherit;
+    background: transparent;
+  }
 }
 
 table {
