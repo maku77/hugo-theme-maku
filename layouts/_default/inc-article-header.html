@@ -29,16 +29,7 @@
   {{- partial "debug/working-bar" . }}
   {{- partial "debug/draft-bar" . }}
   {{- partial "debug/alias" . }}
-
-  {{- /* Markdown ファイルのパスを表示 */}}
-  {{- if .Site.IsServer -}}
-    <div style="text-align:right; font-size: smaller;
-        background-image: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0), red);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;">
-      {{- with .File }}{{ .Filename }}{{ end -}}
-    </div>
-  {{- end }}
+  {{- partial "debug/md-filepath" . }}
 
   {{- /* VS Code で開くフローティングボタン */}}
   {{- if .Site.IsServer }}
