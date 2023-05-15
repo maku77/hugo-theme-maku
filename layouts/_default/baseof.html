@@ -24,6 +24,24 @@
     {{ partial "sidebar/all" . }}
     <main id="xMain">
       {{/* partial "debug" . */}}
+
+      <div id="redirect-notification" style="display: none; font-size: smaller; padding: 1em;">
+        Web サイトの URL が変わりました。ブックマークの変更をお願いします。<br>
+        変更前: <s>https://memoja.net</s><br>
+        変更後: <a href="https://toushi.maku.blog">https://toushi.maku.blog</a><br>
+      </div>
+      <script>
+        // URL のクエリ文字列に redirected が含まれていたら、
+        // サイト移転のお知らせを表示して、クエリ文字列 (redirected) を削除する。
+        const url = new URL(document.location);
+        if (url.searchParams.get('redirected_from') === 'memoja.net') {
+          const elem = document.getElementById('redirect-notification');
+          elem.style.display = 'block';
+          url.searchParams.delete('redirected_from');
+          history.replaceState({}, '', url);
+        }
+      </script>
+
       {{- block "article" . }}article ブロックが見つかりません。{{ end }}
       {{- partialCached "ad/adsense" . }}
     </main><!-- xMain -->
