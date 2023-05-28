@@ -22,7 +22,7 @@ $ git commit
 ```toml
 ...
 theme = "maku"
-googleAnalytics = "UA-XXXXXXXX-X"
+googleAnalytics = "G-XXXXXXXXXX"
 
 [markup.goldmark.renderer]
   unsafe = true
