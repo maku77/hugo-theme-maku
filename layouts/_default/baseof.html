@@ -9,7 +9,12 @@
   {{ $style := resources.Get "css/main.scss" | toCSS | minify | fingerprint -}}
   <link rel="stylesheet" href="{{ $style.RelPermalink }}">
   {{ partialCached "head/favicon" . -}}
-  {{ partialCached "head/jquery" . -}}
+  <script
+    src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+    crossorigin="anonymous"
+    defer></script>
+  <script src="/assets/js/sidebar.js" defer></script>
   {{ partialCached "head/codoc" . -}}
   {{ partial "head/custom" . -}}
   {{ block "head" . }}{{ end -}}
