@@ -9,7 +9,7 @@
   {{ $style := resources.Get "css/main.scss" | toCSS | minify | fingerprint -}}
   <link rel="stylesheet" href="{{ $style.RelPermalink }}">
   {{ partialCached "head/favicon" . -}}
-  <script src="/assets/js/ext-link.js" defer></script>
+  <script src="/assets/js/ext-links.js" defer></script>
   <script src="/assets/js/sidebar.js" defer></script>
   {{ partialCached "head/codoc" . -}}
   {{ partial "head/custom" . -}}
