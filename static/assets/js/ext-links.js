@@ -1,5 +1,4 @@
-<script>
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
   const links = document.querySelectorAll('a[href^=http]');
   for (let i = 0; i < links.length; ++i) {
     const link = links[i];
@@ -21,4 +20,3 @@ document.addEventListener('DOMContentLoaded', function() {
     link.setAttribute('rel', 'noopener');
   }
 });
-</script>
