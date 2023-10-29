@@ -6,4 +6,4 @@
 {{- if $res }}
   {{- $src = $res.RelPermalink }}
 {{- end }}
-<img style="width: {{$w}}px;" src="{{ $src }}" />
+<img style="width: {{$w}}px; min-width: {{$w}}px;" src="{{ $src }}" />
