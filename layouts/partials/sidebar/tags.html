@@ -1,11 +1,41 @@
 <div class="xMenu_box" data-sticky>
   <h3 class="xMenu_box_title"><a href="/tags/">タグ</a></h3>
   <div class="xMenu_box_body">
-    {{- range .Site.Taxonomies.tags.ByCount -}}
-      {{ $termPage := $.Site.GetPage (printf "/tags/%s" .Term) }}
-      <div class="xMenu_tag">
-        <a href="{{ $termPage.RelPermalink }}">{{ $termPage.Title }} ({{ .Count }})</a>
-      </div>
-    {{- end -}}
+    <div id="local-tag-container">
+      {{- range .Site.Taxonomies.tags.ByCount -}}
+        {{ $termPage := $.Site.GetPage (printf "/tags/%s" .Term) }}
+          <div class="xMenu_tag">
+            <a href="{{ $termPage.RelPermalink }}">{{ $termPage.Title }} ({{ .Count }})</a>
+          </div>
+      {{- end -}}
+    </div>
+    <a href="/tags/" style="display: block; padding: 0.2em 0.4em; margin: 0.3em; font-size: smaller;">すべて表示 …</a>
   </div>
 </div>
+
+<script>
+  //
+  // JavaScript でランダムに選んだタグだけ表示する。
+  //
+
+  // 表示するタグの数
+  const NUM_TAGS = 10;
+
+  /** 配列からランダムに count 個を取り出します */
+  function getRandomItemsFromArray(array, count) {
+    const shuffled = array.sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, count);
+  }
+
+  // Extracting xMenu_tag items from Hugo template
+  const containerElem = document.getElementById("local-tag-container");
+  const tagElems = document.querySelectorAll('.xMenu_tag');
+
+  // Convert NodeList to array and shuffle it
+  const tagArray = Array.from(tagElems);
+  const shuffledTags = getRandomItemsFromArray(tagArray, NUM_TAGS);
+
+  // 一旦すべてのタグを消して、ランダムに選択したタグだけ表示する
+  containerElem.innerHTML = '';
+  shuffledTags.forEach((e) => containerElem.appendChild(e));
+</script>
