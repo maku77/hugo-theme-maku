@@ -2,8 +2,9 @@
   <h3 class="xMenu_box_title"><a href="/tags/">タグ</a></h3>
   <div class="xMenu_box_body">
     {{- range .Site.Taxonomies.tags.ByCount -}}
+      {{ $termPage := $.Site.GetPage (printf "/tags/%s" .Term) }}
       <div class="xMenu_tag">
-        <a href="{{ "/tags/" | relLangURL }}{{ .Term | urlize }}">{{ .Term }} ({{ .Count }})</a>
+        <a href="{{ $termPage.RelPermalink }}">{{ $termPage.Title }} ({{ .Count }})</a>
       </div>
     {{- end -}}
   </div>

@@ -1,7 +1,8 @@
-{{- with .Params.tags }}
+{{ $tags := .GetTerms "tags" }}
+{{- with $tags }}
   <div class="xPageTags">
     {{- range . }}
-      <span class="xPageTags_item"><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></span>
+      <span class="xPageTags_item"><a href="{{ .RelPermalink }}">{{ .Title }}</a></span>
     {{- end }}
   </div>
 {{- end }}

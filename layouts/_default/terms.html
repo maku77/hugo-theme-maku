@@ -9,19 +9,19 @@
   <div class="xArticle_content">
     {{- $plural := .Data.Plural }}
 
-    <h2>A-Z 順</h2>
-    <br>
+    <h2 style="margin: 1em 0;">A-Z 順</h2>
     {{- range $index, $term := .Data.Terms.Alphabetical }}
+      {{ $termPage := $.Site.GetPage (printf "/%s/%s" $plural $term.Name) }}
       <div class="xMenu_tag">
-        <a href="{{ $.Site.LanguagePrefix }}/{{ $plural }}/{{ $term.Name | urlize }}">{{ $term.Name }} ({{ $term.Count }})</a>
+        <a href="{{ $termPage.RelPermalink }}">{{ $termPage.Title }} ({{ $term.Count }})</a>
       </div>
     {{- end }}
 
-    <h2>記事数順</h2>
-    <br>
+    <h2 style="margin: 1em 0;">記事数順</h2>
     {{- range $index, $term := .Data.Terms.ByCount }}
+      {{ $termPage := $.Site.GetPage (printf "/%s/%s" $plural $term.Name) }}
       <div class="xMenu_tag">
-        <a href="{{ $.Site.LanguagePrefix }}/{{ $plural }}/{{ $term.Name | urlize }}">{{ $term.Name }} ({{ $term.Count }})</a>
+        <a href="{{ $termPage.RelPermalink }}">{{ $termPage.Title }} ({{ $term.Count }})</a>
       </div>
     {{- end }}
   </div>
