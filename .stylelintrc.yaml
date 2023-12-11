@@ -1,0 +1,8 @@
+extends:
+  - stylelint-config-standard-scss
+
+rules:
+  # Hugo がデフォルトで Dart Sass を組み込むようになったら下記の disableFix は外す
+  media-feature-range-notation: [context, { disableFix: true }]
+  color-function-notation: [modern, { disableFix: true }]
+

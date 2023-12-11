@@ -24,12 +24,12 @@
 
   /* フレキシブルボックスレイアウトによる段組 */
   display: flex;
-  display: -webkit-flex;
 }
 
 #xMain {
   background: #fff;
   padding: 0 $MAIN_PADDING_SMALL;
+
   @include screen-size-1 { padding: 0 $MAIN_PADDING; }
 
   /* メイン領域は最大幅を制限する */
@@ -64,6 +64,7 @@
   #xMain {
     padding-right: 0;
     display: block;
+
     /* width: calc(100vw - 20rem); */
   }
 }

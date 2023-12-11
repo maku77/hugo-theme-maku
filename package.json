@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "まく専用 Hugo テーマです。",
   "scripts": {
-    "lint": "stylelint \"assets/**/*.{css,scss}\""
+    "lint": "stylelint \"assets/**/*.{css,scss}\"",
+    "fix": "stylelint --fix \"assets/**/*.{css,scss}\""
   },
   "license": "UNLICENSED",
   "devDependencies": {
