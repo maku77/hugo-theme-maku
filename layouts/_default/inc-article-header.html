@@ -22,10 +22,8 @@
       <!-- meta itemprop="datePublished" content="｛｛.Date.Format "2006-01-02" ｝｝" / -->
     </span>
   {{- end }}
-  {{- if eq .Params.use_math true }}
-    {{- partialCached "script/mathjax" .Site }}
-  {{- end }}
 
+  {{- partial "maku-common/head/all" . }}
   {{- partial "debug/working-bar" . }}
   {{- partial "debug/draft-bar" . }}
   {{- partial "debug/alias" . }}

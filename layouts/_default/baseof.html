@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>{{ if not .IsHome }}{{- .Render "inc-page-title" -}}｜{{ end }}{{ .Site.Title }}</title>
-  {{ partial "maku-common/head/all" . -}}
   {{ partial "head/analytics" . -}}
   {{ partial "head/ogp" . -}}
   {{ $style := resources.Get "css/main.scss" | toCSS | minify | fingerprint -}}
