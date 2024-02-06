@@ -8,6 +8,7 @@
       {{- partialCached "sidebar/recents" . .Site }}
       {{- partial "sidebar/nav-tree" . }}
       {{- partial "sidebar/tags" . }}
+      {{- partialCached "sidebar/custom.html" . .Site }}
 
       <!-- dummy box for spacing -->
       <div class="xMenu_box" data-sticky><br></div>
