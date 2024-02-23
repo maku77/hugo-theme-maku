@@ -29,6 +29,8 @@
   {{- partial "debug/alias" . }}
   {{- partial "debug/md-filepath" . }}
 
+  {{- partial "mm/sns/sns-buttons" . }}
+
   {{- /* VS Code で開くフローティングボタン */}}
   {{- if .Site.IsServer }}
     {{- with .File }}
