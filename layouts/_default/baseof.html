@@ -4,17 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>{{ if not .IsHome }}{{- .Render "inc-page-title" -}}｜{{ end }}{{ .Site.Title }}</title>
-  {{ partial "head/analytics" . -}}
-  {{ partial "head/ogp" . -}}
   {{ $style := resources.Get "css/main.scss" | toCSS | minify | fingerprint -}}
   <link rel="stylesheet" href="{{ $style.RelPermalink }}">
-  {{ partialCached "head/favicon" . -}}
   <script src="/assets/js/ext-links.js" defer></script>
   <script src="/assets/js/sidebar.js" defer></script>
   {{ partialCached "head/codoc" . -}}
   {{ partial "head/custom" . -}}
   {{ block "head" . }}{{ end -}}
-  {{ partialCached "mm/head/all" . -}}
+  {{ partial "mm/head/all" . -}}
 </head>
 <body>
 
