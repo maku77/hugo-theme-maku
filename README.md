@@ -1,6 +1,6 @@
 # hugo-theme-maku
 
-まく専用 Hugo テーマです。
+まく専用 Hugo テーマ（Hugo module）です。
 
 自分用にカスタマイズされすぎているので汎用性がありません。使わないでください。参考にするだけならOK (^-^)
 
@@ -8,47 +8,29 @@
 テーマの導入方法
 ----
 
-### Hugo プロジェクトに Git submodule として追加
-
-```console
-$ cd <Hugoプロジェクト>
-$ git submodule add -b main https://github.com/maku77/hugo-theme-maku.git themes/maku
-$ git add .
-$ git commit
-```
-
-### config.toml にテーマ設定
+### config.toml に Hugo module として追加
 
 ```toml
-...
-theme = "maku"
-googleAnalytics = "G-XXXXXXXXXX"
-
-[markup.goldmark.renderer]
-  unsafe = true
-
 [params]
   facebookAppId = "1234567890123456"
   Author = "名前"
   AmazonId = "xxxx00-22"
   CustomSearchId = "partner-pub-1234567890123456:1234567890"
+
+...
+[module]
+[[module.imports]]
+  path = "github.com/maku77/hugo-module-maku-common"
+[[module.imports]]
+  path = "github.com/maku77/hugo-theme-maku"
 ```
 
 
-テーマ導入後の Hugo プロジェクトの扱い方
+Hugo module のアップデート方法
 ----
 
-### テーマの submodule ごと clone する
-
-```config
-$ git clone --recursive https://github.com/<owner>/<repo>.git
+```console
+$ go mod tidy  # これを入れておくと go.sum のエントリーが最新だけになっていい感じ
+$ hugo mod get -u github.com/maku77/hugo-module-maku-common
+$ hugo mod get -u github.com/maku77/hugo-theme-maku
 ```
-
-### テーマの submodule を更新する
-
-```config
-$ git submodule update --remote
-$ git add themes
-$ git commit
-```
-
