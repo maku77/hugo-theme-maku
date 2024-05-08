@@ -17,6 +17,16 @@ html {
   -webkit-font-smoothing: antialiased;
 
   // letter-spacing: 0.05em;
+
+  scrollbar-color: $COLOR_SITE $COLOR_SITE_LIGHT;
+}
+
+aside {
+  // 上位要素（html など）で scrollbar-color を設定した場合は、
+  // aside 要素の scrollbar-color をリセットしておかないと、
+  // なぜか aside 要素の水平スクロールバーが常時表示されてしまう。
+  // Chrome バージョン: 124.0.6367.92 で確認。
+  scrollbar-color: auto;
 }
 
 body {
@@ -234,5 +244,12 @@ figure.xImage {
 
 @mixin m-box-shadow($shadows...) {
   box-shadow: $shadows;
+}
+
+/* MathJax の数式が横に長いときにスクロールバーを表示 */
+mjx-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
 }
 
