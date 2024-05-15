@@ -5,8 +5,9 @@
 {{- range .Params.links }}
   {{- $p := $site.GetPage . }}
   {{- if not $p }}
-    {{ errorf "%s\nのフロントマターの links で指定しているファイルが見つかりません → [%s]" $page.File.Filename . }}
+    {{ warnf "%s\nのフロントマターの links で指定しているファイルが見つかりません → [%s]" $page.File.Filename . }}
+  {{- else }}
+    {{ $ret = $ret | append $p }}
   {{- end }}
-  {{ $ret = $ret | append $p }}
 {{- end }}
 {{- return $ret }}
