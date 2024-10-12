@@ -75,21 +75,6 @@ pre {
   }
 }
 
-.xCodeBlock {
-  &_title {
-    background: #ddd;
-    color: #333;
-    display: inline-block;
-    border-radius: 0.5em 0.5em 0 0;
-    padding: 0.2em 1em 0;
-  }
-
-  // pre は基本的に角丸だが、上にタイトル表示がある場合は左上のみ角丸にしない
-  &_title + &_code pre {
-    border-radius: 0 0.5em 0.5em;
-  }
-}
-
 blockquote {
   font-style: italic;
   padding: 0.5em 0 0.5em 0.5em;
@@ -936,51 +921,6 @@ kbd {
       margin-top: 0.5em;
       display: block;
     }
-  }
-}
-
-/*
- * private ショートコード用 {{% private %}}本文{{%/ private %}}
- */
-.xPrivate {
-  $color: $COLOR_PRIVATE;
-
-  position: relative;
-  border: solid 2px $color;
-  border-radius: 0.5em;
-  padding: 1.5em 1em 1em;
-  color: $color;
-
-  &::before {
-    content: "Private メモ";
-    border-radius: 0.3em;
-    position: absolute;
-    display: inline-block;
-    top: -1em;
-    left: 0.8em;
-    padding: 0 0.5em;
-    background: $color;
-    color: white;
-    font-weight: bold;
-  }
-}
-
-/*
- * エイリアスの 7 桁 ID 表示
- */
-.xAlias {
-  $color: $COLOR_PRIVATE;
-
-  margin: 0.5em 0;
-  color: $color;
-  text-align: right;
-  font-weight: bolder;
-
-  &_id {
-    margin-left: 0.5em;
-    background: $color;
-    color: white;
-    padding: 0.2em 0.5em;
   }
 }
 
