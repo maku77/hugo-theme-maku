@@ -6,7 +6,6 @@
   <title>{{ if not .IsHome }}{{- .Render "inc-page-title" -}}｜{{ end }}{{ .Site.Title }}</title>
   {{ $style := resources.Get "css/main.scss" | toCSS | minify | fingerprint -}}
   <link rel="stylesheet" href="{{ $style.RelPermalink }}">
-  <script src="/assets/js/ext-links.js" defer></script>
   <script src="/assets/js/sidebar.js" defer></script>
   {{ partialCached "head/codoc" . -}}
   {{ partial "head/custom" . -}}
@@ -54,6 +53,6 @@
 </div>
 
 {{ partial "breadcrumb-json" . }}
-
+{{ partialCached "mm/scripts" . }}
 </body>
 </html>

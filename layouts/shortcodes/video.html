@@ -1,9 +1,0 @@
-{{- $src := .Get "src" }}
-{{- $width := .Get "w" }}
-{{- $movie := .Page.Resources.GetMatch $src }}
-{{- $url := $movie.RelPermalink }}
-
-<div style="text-align: center;">
-<video style="max-width: 100%; {{ with $width }}width: {{.}}px;{{ end }}" src="{{ $url }}" autoplay loop />
-</div>
-

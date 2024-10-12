@@ -1,9 +1,0 @@
-{{- $src := .Get "src" -}}
-{{- $w := default "auto" (.Get "w") -}}
-
-{{- /* ページまたぎでリンク切れを防ぐおまじない */}}
-{{- $res := .Page.Resources.GetMatch $src }}
-{{- if $res }}
-  {{- $src = $res.RelPermalink }}
-{{- end }}
-<img style="width: {{$w}}px; min-width: {{$w}}px;" src="{{ $src }}" />
