@@ -1,4 +1,5 @@
 {{- if .Parent }}
+  {{- /* .PrevInSection と .NextInSection を使う方法は意図と違うので独自実装 */}}
   {{- /* まずは同じ階層のセクションとページから prev と next を決める */}}
   {{- range .Parent.Pages }}
     {{- if eq . $ }}

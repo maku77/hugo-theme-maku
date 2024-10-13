@@ -23,13 +23,13 @@
     </span>
   {{- end }}
 
-  {{- partial "maku-common/head/all" . }}
+  {{- partial "mm/use-math" . }}
   {{- partial "debug/working-bar" . }}
   {{- partial "debug/draft-bar" . }}
   <div style="text-align: right; margin-top: 0.5rem;">
-    {{- partial "mm/sns/sns-buttons" . }}
+    {{- partial "mm/sns-buttons" . }}
   </div>
-  {{- partial "debug/alias" . }}
+  {{- partial "mm/debug-alias" . }}
   {{- partial "debug/md-filepath" . }}
 
   {{- /* VS Code で開くフローティングボタン */}}
