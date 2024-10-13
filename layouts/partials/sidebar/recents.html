@@ -1,10 +1,10 @@
-{{- $recents5 := partial "functions/get-recents" (dict "site" .Site "count" 5) }}
+{{- $recents5 := partial "mm/func/get-recents" (dict "site" .Site "count" 5) }}
 <div class="xMenu_box" data-sticky>
   <h3 class="xMenu_box_title"><a href="/latest/">新着</a></h3>
   <div class="xMenu_box_body">
     {{- range $recents5 }}
       <div class="xBoxLink">
-        <a href="{{.RelPermalink}}">{{ partial "debug/draft-icon" . }}{{.Title}}
+        <a href="{{.RelPermalink}}">{{ partial "mm/debug-draft-icon" . }}{{.Title}}
         <time>{{.Lastmod.Format "2006-01-02"}}</time></a>
       </div>
     {{- end }}

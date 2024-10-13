@@ -1,6 +1,9 @@
 <style>
 .local-table {
-  font-size: x-small;
+  font-size: smaller;
+}
+.local-table th, td {
+  padding: .2em;
 }
 .local-list a {
   display: block;
@@ -14,37 +17,61 @@
 </style>
 
 <table class="local-table">
-  <tr><th><code>working: true</code></th><td>公開</td><td>作成中だけど見せられるもの。Frontmatter にこれが書かれている記事は「作業中」表示される。</td></tr>
-  <tr><th><code>draft: true</code></th><td>非公開</td><td>作成中でまだ見せられないもの。サーバモードでのみ出力される。ただし、セクションは表示されてしまうっぽい。このページ自体も <code>draft: true</code> で非公開になっています。</td></tr>
-  <tr><th><code>noindex: true</code></th><td>公開</td><td>meta 要素で noindex 出力する想定なので、サイトマップに出力したくないもの</td></tr>
-  <tr><th><code>_build: { list: false }</code></th><td>公開</td><td>「メニュー」「新着記事」「Next/Prev」などで辿らせないもの</td></tr>
+<thead>
+  <tr><th>Frontmatter</th><th>公開</th><th>説明</th></tr>
+</thead>
+<tbody>
+  <tr><th><code>working: true</code></th><td>✅</td><td>「作業中」だけど見せられるもの。</td></tr>
+  <tr><th><code>draft: true</code></th><td>─</td><td>まだ見せられないもの。サーバモードでのみ出力される。ただし、セクションは表示されてしまうっぽい。このページ自体も <code>draft: true</code> で非公開になっています。</td></tr>
+  <tr><th><code>noindex: true</code></th><td>✅</td><td>meta 要素で noindex 出力する想定なので、サイトマップに出力したくないもの</td></tr>
+  <tr><th><code>_build: { list: false }</code></th><td>✅</td><td>「メニュー」「新着記事」「Next/Prev」などで辿らせないもの</td></tr>
+</tbody>
 </table>
 
 {{ $workingPages := (sort (where .Site.Pages ".Params.working" true) ".Title") }}
 {{ $draftPages := (sort (where .Site.Pages ".Draft" true) ".Title") }}
 {{ $noindexPages := (sort (where .Site.Pages ".Params.noindex" true) ".Title") }}
 
-<ol>
-<li>working（公開）
+
+Working（公開）
+----
+
 <ul class="local-list">
-{{ range $workingPages }}
-<li><a href="{{ .RelPermalink }}">{{ .Title }}<div class="local-date">({{ .Lastmod.Format "2006-01-02" }}){{ range .Params.tags }} #{{ . }}{{ end }}</div></a></li>
-{{ end }}
+  {{ range $workingPages }}
+  <li>
+    <a href="{{ .RelPermalink }}">{{ partial "mm/debug-draft-icon" . }}{{ .Title }}
+      <div class="local-date">({{ .Lastmod.Format "2006-01-02" }}){{ range .Params.tags }} #{{ . }}{{ end }}</div>
+    </a>
+  </li>
+  {{ end }}
 </ul>
-</li>
-<li>draft（非公開）
+
+
+Draft（非公開）
+----
+
 <ul class="local-list">
-{{ range $draftPages }}
-<li><a href="{{ .RelPermalink }}">{{ .Title }}<div class="local-date">({{ .Lastmod.Format "2006-01-02" }}){{ range .Params.tags }} #{{ . }}{{ end }}</div></a></li>
-{{ end }}
+  {{ range $draftPages }}
+  <li>
+    <a href="{{ .RelPermalink }}">{{ partial "mm/debug-draft-icon" . }}{{ .Title }}
+      <div class="local-date">({{ .Lastmod.Format "2006-01-02" }}){{ range .Params.tags }} #{{ . }}{{ end }}</div>
+    </a>
+  </li>
+  {{ end }}
 </ul>
-</li>
-<li>noindex（公開）
+
+
+noindex（公開）
+----
+
 <ul class="local-list">
-{{ range $noindexPages }}
-<li><a href="{{ .RelPermalink }}">{{ .Title }}<div class="local-date">({{ .Lastmod.Format "2006-01-02" }}){{ range .Params.tags }} #{{ . }}{{ end }}</div></a></li>
-{{ end }}
-</ul>
+  {{ range $noindexPages }}
+  <li>
+    <a href="{{ .RelPermalink }}">{{ partial "mm/debug-draft-icon" . }}{{ .Title }}
+      <div class="local-date">({{ .Lastmod.Format "2006-01-02" }}){{ range .Params.tags }} #{{ . }}{{ end }}</div>
+    </a>
+  </li>
+  {{ end }}
+  </ul>
 </li>
-</ol>
 

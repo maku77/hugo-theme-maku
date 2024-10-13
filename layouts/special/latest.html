@@ -1,5 +1,5 @@
 {{ define "article" }}
-{{- $recents50 := partial "functions/get-recents" (dict "site" .Site "count" 50) }}
+{{- $recents50 := partial "mm/func/get-recents" (dict "site" .Site "count" 50) }}
 <article class="xArticle" itemscope itemtype="https://schema.org/BlogPosting">
   {{ .Render "inc-article-header" }}
   {{ .Render "inc-article-content" }}
@@ -13,7 +13,7 @@
       {{- if .Title }}
       <tr>
         <td style="white-space:nowrap;">{{ with .Lastmod }}<time>{{ .Format "2006-01-02" }}</time>{{ end }}</td>
-        <td><a style="display: block;" href="{{ .RelPermalink }}">{{ partial "debug/draft-icon" . }}{{ .Title }}</a></td>
+        <td><a style="display: block;" href="{{ .RelPermalink }}">{{ partial "mm/debug-draft-icon" . }}{{ .Title }}</a></td>
       </tr>
       {{- end }}
     {{- end }}

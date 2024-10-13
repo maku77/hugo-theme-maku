@@ -1,10 +1,10 @@
-{{- $recents3 := partial "functions/get-recents" (dict "site" .Site "count" 3) }}
+{{- $recents3 := partial "mm/func/get-recents" (dict "site" .Site "count" 3) }}
 <aside>
 <div class="xRecents">
   <h4>新着記事</h4>
   {{- range $recents3 -}}
     <div class="xRecents_item">
-      <a href="{{.RelPermalink}}">{{ partial "debug/draft-icon" . }}{{.Title}}
+      <a href="{{.RelPermalink}}">{{ partial "mm/debug-draft-icon" . }}{{.Title}}
       {{- range .Params.tags -}}
         <span class="xRecents_item_tag">{{ . }}</span>
       {{- end -}}
