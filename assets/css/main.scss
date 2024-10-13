@@ -875,56 +875,6 @@ kbd {
 }
 
 /*
- * Amazon アソシエイツ
- */
-.xAmazon {
-  a {
-    display: block;
-
-    @include screen-size-1 {
-      display: flex;
-    }
-  }
-
-  &:hover &_image {
-    filter: alpha(opacity=80);
-    opacity: 0.8;
-  }
-  &_image { text-align: center; }
-
-  &_image img {
-    max-height: 200px;
-    min-width: 50px;
-  }
-  &_info { padding: 0.5em; }
-  &_info_title { display: block; }
-
-  &_info_author {
-    display: inline;
-    font-weight: normal;
-
-    @include screen-size-1 { margin-top: 0.5em; }
-  }
-
-  &_info_publisher {
-    display: inline;
-    font-weight: normal;
-    &::before { content: '/ '; }
-
-    @include screen-size-1 { margin-top: 0.5em; }
-  }
-
-  &_info_icon {
-    display: inline;
-
-    @include screen-size-1 {
-      margin-top: 0.5em;
-      display: block;
-    }
-  }
-}
-
-/*
  * デバッグ系
  */
 .xDebug-linkTitle {
