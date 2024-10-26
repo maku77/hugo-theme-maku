@@ -1,5 +1,5 @@
 {{- /* 作業中マーク表示（ローカルサーバのみ出力） */}}
-{{- if and .Site.IsServer (eq .Params.working true) -}}
+{{- if and hugo.IsServer (eq .Params.working true) -}}
   <div style="background:#0a3; color:white; text-align:center; margin-top: .5em;">
     <a href="/working/" style="display:block; padding:0.2em; width:100%; color:white;">作業中（公開）</a>
   </div>

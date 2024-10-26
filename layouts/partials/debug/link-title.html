@@ -1,5 +1,5 @@
 {{- /* linkTitle の表示 */}}
-{{- if .Site.IsServer -}}
+{{- if hugo.IsServer -}}
   {{- with .Params.LinkTitle }}
     <div class="xDebug-linkTitle">{{ . }}</div>
   {{- else }}

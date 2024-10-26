@@ -1,5 +1,5 @@
 {{- /* Markdown ファイルのパスを表示 */}}
-{{- if .Site.IsServer -}}
+{{- if hugo.IsServer -}}
 <div style="color:red; text-align:right; font-size:0.8em;">
   {{- with .File }}{{ .Filename }}{{ end -}}
 </div>

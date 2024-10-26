@@ -10,7 +10,7 @@
   {{- range $sortedSubPages }}
     <li><a href="{{ .RelPermalink }}">{{ if .IsSection }}&#128193;{{ end }}
       {{- partial "mm/debug-draft-icon" . -}}{{- partial "debug/weight-icon" . -}}{{- .LinkTitle }}
-      {{- if .Site.IsServer }}
+      {{- if hugo.IsServer }}
         <div style="font-size: smaller; font-weight: normal;">
           {{- if .Params.linkTitle }}<span style="opacity: 50%;">{{ .Title }}</span>{{ end }}
           {{- if in $links . }}{{ partial "debug/link-path" . }}{{ end }}

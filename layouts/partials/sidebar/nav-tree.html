@@ -13,12 +13,12 @@
   {{- $sections := $section.Sections }}
 
   {{- /* リリース時はドラフトセクション以外を表示 */}}
-  {{- $sections := cond $section.Site.IsServer $sections (where $sections ".Draft" false) }}
+  {{- $sections := cond hugo.IsServer $sections (where $sections ".Draft" false) }}
 
   <ul>
     {{- /* セクション直下のセクションページをループ表示 */}}
     {{- range $sections }}
-      <li{{ if (eq . $current) }} class="xNavTree-active"{{ end }}><a class="xNavTree-dir" href="{{ .RelPermalink }}">{{ if .Draft }}<span style="color:#f36">×</span>{{ end }}{{ .LinkTitle }}{{ if $section.Site.IsServer }} <small>({{ len (union .Pages .Sections) }})</small>{{ end }}</a>
+      <li{{ if (eq . $current) }} class="xNavTree-active"{{ end }}><a class="xNavTree-dir" href="{{ .RelPermalink }}">{{ if .Draft }}<span style="color:#f36">×</span>{{ end }}{{ .LinkTitle }}{{ if hugo.IsServer }} <small>({{ len (union .Pages .Sections) }})</small>{{ end }}</a>
         {{- if or (.IsAncestor $current) (eq . $current) }}
           {{- /* 開いているページよりも上位のセクション（あるいは自分自身）であればさらに掘り下げる */}}
           {{- template "nav-tree-internal" (dict "section" . "current" $current) }}

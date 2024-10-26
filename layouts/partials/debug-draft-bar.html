@@ -1,5 +1,5 @@
 {{- /* ドラフトマーク表示（ローカルサーバのみ出力） */}}
-{{- if and .Site.IsServer .Draft -}}
+{{- if and hugo.IsServer .Draft -}}
   <div style="background:red; color:white; text-align:center; margin-top: .5em;">
     <a href="/drafts/" style="display:block; padding:0.2em; width:100%; color:white;">ドラフト</a>
   </div>
