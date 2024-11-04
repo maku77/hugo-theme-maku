@@ -1,4 +1,4 @@
-# hugo-theme-maku
+# hugo-module-maku-blog
 
 まく専用 Hugo テーマ（Hugo module）です。
 
@@ -22,7 +22,7 @@
 [[module.imports]]
   path = "github.com/maku77/hugo-module-maku-common"
 [[module.imports]]
-  path = "github.com/maku77/hugo-theme-maku"
+  path = "github.com/maku77/hugo-module-maku-blog"
 ```
 
 
@@ -32,5 +32,5 @@ Hugo module のアップデート方法
 ```console
 $ go mod tidy  # これを入れておくと go.sum のエントリーが最新だけになっていい感じ
 $ hugo mod get -u github.com/maku77/hugo-module-maku-common
-$ hugo mod get -u github.com/maku77/hugo-theme-maku
+$ hugo mod get -u github.com/maku77/hugo-module-maku-blog
 ```

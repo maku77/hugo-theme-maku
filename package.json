@@ -1,5 +1,5 @@
 {
-  "name": "hugo-theme-maku",
+  "name": "hugo-module-maku-blog",
   "version": "0.0.1",
   "description": "まく専用 Hugo テーマです。",
   "scripts": {
